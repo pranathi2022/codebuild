@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18 # Specify your desired Node.js version
+    commands:
+      - echo "Installing npm dependencies..."
+      - npm install
+  pre_build:
+    commands:
+      - echo "Running tests..."
+      - npm test # Optional: Run your application's tests
+  build:
+    commands:
+      - echo "Building application..."
+      - npm run build # If you have a build script, e.g., for transpiling or bundling
+  post_build:
+    commands:
+      - echo "Build complete."
+
+artifacts:
+  files:
+    - '**/*' # Include all files in the build output
+  discard-paths: yes # Do not include the source directory structure in the artifact
+  base-directory: build # Optional: If your build output is in a specific directory
